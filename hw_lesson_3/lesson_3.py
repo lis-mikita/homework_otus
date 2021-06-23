@@ -1,5 +1,17 @@
 # Homework of lesson 3
 
+from functools import wraps
+from time import time
+
+def timing_dec(func, *args):
+    @wraps(func)
+    def wrapper(*args):
+        start_time = time()
+        func(*args)
+        return time() - start_time
+    return wrapper
+
+@timing_dec
 def square_of_numbers(keyword, *args):
     """
     :param args: N integer
@@ -31,7 +43,3 @@ def int_conversion(list_int, keyword):
             elif i > 10 and count == 0:
                 ic_list.append(i)
     return ic_list
-
-print("Test int_conversion:", int_conversion([1, 4, 5, 6, 7, 100, 10, 11, 13, 17], "prime"))
-
-# TODO change def int_conversion
