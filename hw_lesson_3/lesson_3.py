@@ -15,14 +15,23 @@ def int_conversion(list_int, keyword):
     :param keyword:
     :return:
     """
-    ic_list = list_int
-    if keyword == "even":
-        pass
-    elif keyword == "odd":
-        pass
-    elif keyword == "prime":
-        pass
-    else:
-        pass
+    ic_list = []
+    if keyword == "even":  # четные
+        ic_list = list(filter(lambda v: v % 2 == 0, list_int))
+    elif keyword == "odd":  # нечетные
+        ic_list = list(filter(lambda v: v % 2 != 0, list_int))
+    elif keyword == "prime":  # простые
+        for i in list_int:
+            count = 0
+            for j in range(2, 10):
+                if i % j == 0:
+                    count += 1
+            if i < 10 and count < 2:
+                ic_list.append(i)
+            elif i > 10 and count == 0:
+                ic_list.append(i)
     return ic_list
-# TODO add feature for def int_conversion
+
+print("Test int_conversion:", int_conversion([1, 4, 5, 6, 7, 100, 10, 11, 13, 17], "prime"))
+
+# TODO change def int_conversion
