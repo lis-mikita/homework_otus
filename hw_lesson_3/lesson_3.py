@@ -12,6 +12,15 @@ def timing_dec(func, *args):
     return wrapper
 
 @timing_dec
+def square_of_numbers_dec(keyword, *args):
+    """
+    :param args: N integer
+    :param keyword: Choice of degree of N integer
+    :return: list of square N integer
+    """
+    son_list = []
+    return [v ** keyword for v in args]
+
 def square_of_numbers(keyword, *args):
     """
     :param args: N integer
@@ -23,9 +32,9 @@ def square_of_numbers(keyword, *args):
 
 def int_conversion(list_int, keyword):
     """
-    :param list_int:
-    :param keyword:
-    :return:
+    :param list_int: input list of numbers
+    :param keyword: "even" or "odd" or "prime"
+    :return: sorter list
     """
     ic_list = []
     if keyword == "even":  # четные
@@ -43,3 +52,20 @@ def int_conversion(list_int, keyword):
             elif i > 10 and count == 0:
                 ic_list.append(i)
     return ic_list
+
+print("Show work function square_of_numbers:")
+print("Square of 1, 3, 4, 120, 1000 of degree 1:", square_of_numbers(1, 1, 3, 4, 120))
+print("Square of 1, 3, 4, 120, 1000 of degree 2:", square_of_numbers(2, 1, 3, 4, 120))
+print("Square of 1, 3, 4, 120, 1000 of degree 10:", square_of_numbers(10, 1, 3, 4, 120))
+
+print("Show work timing_dec for function square_of_numbers:")
+print("Time build square of 1, 3, 4, 120, 1000 of degree 1:", square_of_numbers_dec(1, 1, 3, 4, 120))
+print("Time build square of 1, 3, 4, 120, 1000 of degree 2:", square_of_numbers_dec(2, 1, 3, 4, 120))
+print("Time build square of 1, 3, 4, 120, 1000 of degree 10:", square_of_numbers_dec(10, 1, 3, 4, 120))
+
+print("Show work function int_conversion:")
+my_list = [1, 3, 4, 9, 13, 120, 1000]
+print("List =", my_list)
+print("Filter 'even' in my_list:", int_conversion(my_list, "even"))
+print("Filter 'odd' in my_list:", int_conversion(my_list, "odd"))
+print("Filter 'prime' in my_list:", int_conversion(my_list, "prime"))
