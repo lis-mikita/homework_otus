@@ -5,6 +5,11 @@ from time import time
 from pprint import pprint
 
 def timing_dec(func, *args):
+    """
+    :param func: any function
+    :param args: arguments for function
+    :return: time work function
+    """
     @wraps(func)
     def wrapper(*args):
         start_time = time()
@@ -55,6 +60,11 @@ def int_conversion(list_int, keyword):
     return ic_list
 
 def count_input_dec(func, *args):
+    """
+    :param func: any function
+    :param args: arguments for function
+    :return: count entries into function
+    """
     @wraps(func)
     def wrapper(*args):
         res = func(*args)
@@ -67,6 +77,10 @@ count_input_dec.cif = 0
 
 @count_input_dec
 def fib(n=2):
+    """
+    :param n: numbers Fibonacсi
+    :return: dictionary of F0 to Fn
+    """
     f0, f1, step = 0, 1, "____"
     if n >= 0:
         if n == 0:
@@ -92,7 +106,6 @@ def fib(n=2):
             res[i] = res[i + 2] - res[i + 1]
             print(f"fib({i}):", res[i], step * abs(i))
         return res
-
 
 print("Show work function square_of_numbers:")
 print("Square of 1, 3, 4, 120, 1000 of degree 1:", square_of_numbers(1, 1, 3, 4, 120))
