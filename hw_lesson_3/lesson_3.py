@@ -2,6 +2,7 @@
 
 from functools import wraps
 from time import time
+from pprint import pprint
 
 def timing_dec(func, *args):
     @wraps(func)
@@ -53,6 +54,18 @@ def int_conversion(list_int, keyword):
                 ic_list.append(i)
     return ic_list
 
+def count_input_dec(func, *args):
+    @wraps(func)
+    def wrapper(*args):
+        res = func(*args)
+        count_input_dec.cif += 1
+        print("The number of entries into the function:", count_input_dec.cif)
+        return res
+    return wrapper
+
+count_input_dec.cif = 0
+
+@count_input_dec
 def fib(n=2):
     f0, f1, step = 0, 1, "____"
     if n >= 0:
@@ -71,9 +84,17 @@ def fib(n=2):
                 res[i] = res[i-1] + res[i-2]
                 print(step*i + ' ' + f"fib({i}):", res[i])
             return res
+    else:
+        print(f"fib({f1}):", f1)
+        print(f"fib({f0}):", f0)
+        res = {f1: f1, f0: f0}
+        for i in range(-1, n-1, -1):
+            res[i] = res[i + 2] - res[i + 1]
+            print(f"fib({i}):", res[i], step * abs(i))
+        return res
 
 
-"""print("Show work function square_of_numbers:")
+print("Show work function square_of_numbers:")
 print("Square of 1, 3, 4, 120, 1000 of degree 1:", square_of_numbers(1, 1, 3, 4, 120))
 print("Square of 1, 3, 4, 120, 1000 of degree 2:", square_of_numbers(2, 1, 3, 4, 120))
 print("Square of 1, 3, 4, 120, 1000 of degree 10:", square_of_numbers(10, 1, 3, 4, 120))
@@ -88,4 +109,8 @@ my_list = [1, 3, 4, 9, 13, 120, 1000]
 print("List =", my_list)
 print("Filter 'even' in my_list:", int_conversion(my_list, "even"))
 print("Filter 'odd' in my_list:", int_conversion(my_list, "odd"))
-print("Filter 'prime' in my_list:", int_conversion(my_list, "prime"))"""
+print("Filter 'prime' in my_list:", int_conversion(my_list, "prime"))
+
+print("Calculation fib 10:", fib(10))
+print("Calculation fib -10:", fib(-10))
+pprint(fib(4))
