@@ -53,7 +53,27 @@ def int_conversion(list_int, keyword):
                 ic_list.append(i)
     return ic_list
 
-print("Show work function square_of_numbers:")
+def fib(n=2):
+    f0, f1, step = 0, 1, "____"
+    if n >= 0:
+        if n == 0:
+            print(f"fib({f0}):", f0)
+            return {f0: f0}
+        elif n == 1:
+            print(f"fib({f0}):", f0)
+            print(step + ' ' + f"fib({f1}):", f1)
+            return {f0: f0, f1: f1}
+        else:
+            print(f"fib({f0}):", f0)
+            print(step + ' ' + f"fib({f1}):", f1)
+            res = {f0: f0, f1: f1}
+            for i in range(2, n+1):
+                res[i] = res[i-1] + res[i-2]
+                print(step*i + ' ' + f"fib({i}):", res[i])
+            return res
+
+
+"""print("Show work function square_of_numbers:")
 print("Square of 1, 3, 4, 120, 1000 of degree 1:", square_of_numbers(1, 1, 3, 4, 120))
 print("Square of 1, 3, 4, 120, 1000 of degree 2:", square_of_numbers(2, 1, 3, 4, 120))
 print("Square of 1, 3, 4, 120, 1000 of degree 10:", square_of_numbers(10, 1, 3, 4, 120))
@@ -68,4 +88,4 @@ my_list = [1, 3, 4, 9, 13, 120, 1000]
 print("List =", my_list)
 print("Filter 'even' in my_list:", int_conversion(my_list, "even"))
 print("Filter 'odd' in my_list:", int_conversion(my_list, "odd"))
-print("Filter 'prime' in my_list:", int_conversion(my_list, "prime"))
+print("Filter 'prime' in my_list:", int_conversion(my_list, "prime"))"""
